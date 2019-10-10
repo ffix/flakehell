@@ -4,7 +4,8 @@ from .._patched import FlakeHellApplication
 from .._types import CommandResult
 
 
-def missed_command(argv) -> CommandResult:
+def missed_command(argv):
+    # type: (...) -> CommandResult
     """Show patterns from the config that has no matched plugin installed.
     """
     if argv and argv[0] == '--help':

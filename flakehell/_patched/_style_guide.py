@@ -1,4 +1,7 @@
-from functools import lru_cache
+try:
+    from functools import lru_cache
+except ImportError:
+    from functools32 import lru_cache
 
 from flake8.style_guide import StyleGuideManager, StyleGuide, Decision
 
@@ -11,7 +14,7 @@ class FlakeHellStyleGuideManager(StyleGuideManager):
 
         .. todo:: Add parameter documentation.
         """
-        super().__init__(options, formatter, decider)
+        super(FlakeHellStyleGuideManager, self).__init__(options, formatter, decider)
         self.default_style_guide = FlakeHellStyleGuide(
             options, formatter, self.stats, decider=decider,
         )
@@ -34,13 +37,13 @@ class FlakeHellStyleGuideManager(StyleGuideManager):
 
     def handle_error(
         self,
-        code: str,
-        filename: str,
-        line_number: int,
-        column_number: int,
-        text: str,
-        plugin: str,
-        physical_line: str = None,
+        code,  # type: str
+        filename,  # type: str
+        line_number,  # type: int
+        column_number,  # type: int
+        text,  # type: str
+        plugin,  # type: str
+        physical_line=None,  # type: str
     ):
         guide = self.style_guide_for(filename)
         params = dict(
@@ -59,13 +62,13 @@ class FlakeHellStyleGuideManager(StyleGuideManager):
 class FlakeHellStyleGuide(StyleGuide):
     def handle_error(
         self,
-        code: str,
-        filename: str,
-        line_number: int,
-        column_number: int,
-        text: str,
-        plugin: str,
-        physical_line: str = None,
+        code,  # type: str
+        filename,  # type: str
+        line_number,  # type: int
+        column_number,  # type: int
+        text,  # type: str
+        plugin,  # type: str
+        physical_line=None,  # type: str
     ):
         """This function copied as is, but Violation replaced by FlakeHellViolation
         """

@@ -22,7 +22,8 @@ class FlakeHellApplication(Application):
     + register custom formatters
     """
 
-    def get_toml_config(self, path: Path = None) -> Dict[str, Any]:
+    def get_toml_config(self, path=None):
+        # type: (Path) -> Dict[str, Any]:
         if path is not None:
             return read_config(path)
         # lookup for config from current dir up to root
@@ -33,7 +34,8 @@ class FlakeHellApplication(Application):
         return dict()
 
     @staticmethod
-    def extract_toml_config_path(argv: List[str] = None) -> Tuple[Optional[Path], Optional[List[str]]]:
+    def extract_toml_config_path(argv=None):
+        # type: (List[str]) -> Tuple[Optional[Path], Optional[List[str]]]
         if not argv:
             return None, argv
         parser = ArgumentParser()
@@ -43,7 +45,8 @@ class FlakeHellApplication(Application):
             return Path(known.config).expanduser(), unknown
         return None, argv
 
-    def parse_configuration_and_cli(self, argv: List[str] = None) -> None:
+    def parse_configuration_and_cli(self, argv=None):
+        # type: (List[str]) -> None
         # if passed `--config` with path to TOML-config, we should extract it
         # before passing into flake8 mechanisms
         config_path, argv = self.extract_toml_config_path(argv=argv)
@@ -64,9 +67,10 @@ class FlakeHellApplication(Application):
             arglist=argv,
             values=config,
         )
-        super().parse_configuration_and_cli(argv=argv)
+        super(FlakeHellApplication, self).parse_configuration_and_cli(argv=argv)
 
-    def make_file_checker_manager(self) -> None:
+    def make_file_checker_manager(self):
+        # type: () -> None
         self.file_checker_manager = FlakeHellCheckersManager(
             baseline=getattr(self.options, 'baseline', None),
             style_guide=self.guide,
@@ -74,7 +78,8 @@ class FlakeHellApplication(Application):
             checker_plugins=self.check_plugins,
         )
 
-    def find_plugins(self) -> None:
+    def find_plugins(self):
+        # type: () -> None
         if self.local_plugins is None:
             self.local_plugins = get_local_plugins(
                 self.config_finder,
@@ -86,9 +91,10 @@ class FlakeHellApplication(Application):
 
         if self.check_plugins is None:
             self.check_plugins = FlakeHellCheckers(self.local_plugins.extension)
-        super().find_plugins()
+        super(FlakeHellApplication, self).find_plugins()
 
-    def make_guide(self) -> None:
+    def make_guide(self):
+        # type: () -> None
         """Patched StyleGuide creation just to use FlakeHellStyleGuideManager
         instead of original one.
         """

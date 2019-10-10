@@ -37,7 +37,8 @@ class ColoredFormatter(Default):
             line += colored(' [{}]'.format(plugin), 'grey')
         return line
 
-    def show_source(self, error) -> str:
+    def show_source(self, error):
+        # type: (...) -> str
         """Called when ``--show-source`` option is provided."""
         if not self._should_show_source(error):
             return ''
@@ -56,5 +57,6 @@ class ColoredFormatter(Default):
             pointer=' ' * (error.column_number - 1 - adjust),
         )
 
-    def _should_show_source(self, error) -> bool:
+    def _should_show_source(self, error):
+        # type: (...) -> bool
         return self.options.show_source and error.physical_line is not None

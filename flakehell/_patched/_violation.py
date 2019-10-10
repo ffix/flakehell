@@ -28,7 +28,11 @@ class FlakeHellViolation(_Violation):
     """
 
     def is_inline_ignored(self, disable_noqa):
-        return Violation.is_inline_ignored(self, disable_noqa)
+        values = self._asdict()
+        del(values['plugin'])
+        return Violation(**values).is_inline_ignored(disable_noqa)
 
     def is_in(self, diff):
-        return Violation.is_in(self, diff)
+        values = self._asdict()
+        del(values['plugin'])
+        return Violation(**values).is_in(diff)

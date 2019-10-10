@@ -26,7 +26,8 @@ logger.info(
 )
 
 
-def function_name(plugin: str ='flake8') ->str:
+def function_name(plugin='flake8'):
+    # type: (str) -> str
     """Test `wrong`rst code."""
     return plugin
 

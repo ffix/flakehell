@@ -31,7 +31,8 @@ REX_QUOTES = re.compile(
 )
 
 
-def color_code(code: str) -> str:
+def color_code(code):
+    # type: (str) -> str
     match = REX_TEXT.match(code)
     color = 'blue'
     if match:
@@ -39,8 +40,26 @@ def color_code(code: str) -> str:
     return REX_CODE.sub(colored(r'\1', color) + colored(r'\2', 'cyan'), code)
 
 
-def color_description(text: str) -> str:
-    text = REX_NUMBER.sub(colored(r'\1', 'green'), text)
-    text = REX_QUOTES.sub(r'\4' + colored(r'\1\2\3\5\6\7', 'yellow'), text)
-    text = REX_PLACEHOLDER.sub(colored(r'\1', 'green'), text)
+def colorize_quotes(m):
+    # https://bugs.python.org/issue1519638
+    return '{0}{1}'.format(
+        m.group(4) or '',
+        colored(
+            '{}{}{}{}{}{}'.format(
+                m.group(1) or '',
+                m.group(2) or '',
+                m.group(3) or '',
+                m.group(5) or '',
+                m.group(6) or '',
+                m.group(7) or '',
+            ),
+            'yellow',
+        ),
+    )
+
+def color_description(text):
+    # type: (str) -> str
+    text = REX_NUMBER.sub(colored(lambda m: m.group(1), 'green'), text)
+    text = REX_QUOTES.sub(colorize_quotes, text)
+    text = REX_PLACEHOLDER.sub(colored(lambda m: m.group(1), 'green'), text)
     return text

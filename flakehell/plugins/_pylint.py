@@ -1,5 +1,6 @@
 from ast import AST
-from tokenize import TokenInfo
+# FIXME:
+# from tokenize import TokenInfo
 from typing import Sequence
 
 from pylint.__pkginfo__ import version
@@ -12,7 +13,7 @@ STDIN = 'stdin'
 class Reporter(BaseReporter):
     def __init__(self):
         self.errors = []
-        super().__init__()
+        super(Reporter, self).__init__()
 
     def _display(self, layout):
         pass
@@ -30,13 +31,18 @@ class PyLintChecker:
     name = 'pylint'
     version = version
 
-    def __init__(self, tree: AST, file_tokens: Sequence[TokenInfo], filename: str = STDIN) -> None:
+    def __init__(self, tree, file_tokens, filename=STDIN):
+        # type: (AST, Sequence[TokenInfo], str) -> None
         self.tree = tree
         self.filename = filename
         self.file_tokens = file_tokens
 
     def run(self):
         reporter = Reporter()
-        Run([self.filename], reporter=reporter, do_exit=False)
+        try:
+            Run([self.filename], reporter=reporter, do_exit=False)
+        except TypeError:
+            Run([self.filename], reporter=reporter, exit=False)
+
         for error in reporter.errors:
             yield error['row'], error['col'], error['text'], type(self)

@@ -6,7 +6,8 @@ from .._patched import FlakeHellApplication
 from .._types import CommandResult
 
 
-def code_command(argv) -> CommandResult:
+def code_command(argv):
+    # type: (...) -> CommandResult
     """Show plugin name and message for given code.
     """
     if not argv:

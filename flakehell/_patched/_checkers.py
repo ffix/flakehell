@@ -14,9 +14,10 @@ class FlakeHellCheckersManager(Manager):
         self.baseline = set()
         if baseline:
             self.baseline = {line.strip() for line in open(baseline)}
-        super().__init__(**kwargs)
+        super(FlakeHellCheckersManager, self).__init__(**kwargs)
 
-    def make_checkers(self, paths: List[str] = None) -> None:
+    def make_checkers(self, paths=None):
+        # type: (List[str]) -> None:
         """
         Reloaded checkers generator to provide one checker per file per rule.
         Original `make_checkers` provides checker per file with all rules mixed.
@@ -65,7 +66,8 @@ class FlakeHellCheckersManager(Manager):
         #     return None
         return checker
 
-    def _should_create_file_checker(self, filename: str, argument) -> bool:
+    def _should_create_file_checker(self, filename, argument):
+        # type: (str, Any) -> bool
         """Filter out excluded files
         """
         if filename == '-':
@@ -79,7 +81,8 @@ class FlakeHellCheckersManager(Manager):
             return False
         return argument == filename
 
-    def report(self) -> Tuple[int, int]:
+    def report(self):
+        # type: () -> Tuple[int, int]
         """Reloaded report generation to filter out excluded error codes.
 
         + use checker.filename as path instead of checker.display_name
@@ -98,7 +101,8 @@ class FlakeHellCheckersManager(Manager):
             results_found += len(results)
         return (results_found, results_reported)
 
-    def _handle_results(self, filename: str, results: list, check: dict) -> int:
+    def _handle_results(self, filename, results, check):
+        # type (str, list, dict) -> int
         if not results:
             return 0
         plugin_name = get_plugin_name(check)
@@ -137,12 +141,13 @@ class FlakeHellFileChecker(FileChecker):
     """
     A little bit patched FileChecker to handle ane check per checker
     """
-    def __init__(self, filename: str, check_type: str, check, options):
+    def __init__(self, filename, check_type, check, options):
+        # type: (str, str, Any, Any)
         self.check_type = check_type
         self.check = check
         checks = dict(ast_plugins=[], logical_line_plugins=[], physical_line_plugins=[])
         checks[check_type] = [check]
-        super().__init__(filename=filename, checks=checks, options=options)
+        super(FlakeHellFileChecker, self).__init__(filename=filename, checks=checks, options=options)
 
         # display_name used in run_parallel for grouping results.
         # Flake8 groups by filename, we need to group also by plugin name
@@ -157,5 +162,5 @@ class FlakeHellFileChecker(FileChecker):
 
     def run_checks(self):
         if self.processor:
-            super().run_checks()
+            super(FlakeHellFileChecker, self).run_checks()
         return self.display_name, self.results, self.statistics

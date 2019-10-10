@@ -13,7 +13,8 @@ ALIASES = {
 }
 
 
-def get_plugin_name(plugin: Dict[str, Any]) -> str:
+def get_plugin_name(plugin):
+    # type: (Dict[str, Any]) -> str
     """Get plugin name from plugin info
 
     Users expect the same plugin name as the name of the package that provides plugin.
@@ -41,7 +42,8 @@ def get_plugin_name(plugin: Dict[str, Any]) -> str:
     return names[0]
 
 
-def get_plugin_rules(plugin_name: str, plugins: Dict[str, List[str]]) -> List[str]:
+def get_plugin_rules(plugin_name, plugins):
+    # type: (str, List[str]) -> List[str]
     """Get rules for plugin from `plugins` in the config
 
     Plugin name can be specified as a glob expression.
@@ -71,7 +73,8 @@ def get_plugin_rules(plugin_name: str, plugins: Dict[str, List[str]]) -> List[st
     return []
 
 
-def check_include(code: str, rules: List[str]) -> bool:
+def check_include(code, rules):
+    # type: (str, List[str]) -> bool
     """
     0. Validate rules
 

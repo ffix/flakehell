@@ -36,7 +36,7 @@ module="flakehell"
 author="Gram (@orsinium)"
 author-email="master_fess@mail.ru"
 home-page="https://gitlab.com/life4/flakehell"
-requires-python=">=3.5"
+requires-python=">=2.7"
 requires=[
     "entrypoints",
     "flake8>=3.7.5",

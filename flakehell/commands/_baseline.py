@@ -1,12 +1,12 @@
-from types import SimpleNamespace
-
 from .._constants import NAME, VERSION
 from .._patched import FlakeHellApplication
 from .._types import CommandResult
 from ..formatters import BaseLineFormatter
+from .._types import SimpleNamespace
 
 
-def baseline_command(argv) -> CommandResult:
+def baseline_command(argv):
+    # type: () -> CommandResult
     """Run patched flake8 against the code.
     """
     app = FlakeHellApplication(program=NAME, version=VERSION)

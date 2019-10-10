@@ -13,11 +13,12 @@ class StatFormatter(ColoredFormatter):
     """
 
     def after_init(self):
-        super().after_init()
+        super(StatFormatter, self).after_init()
         self._codes = defaultdict(lambda: defaultdict(int))
         self._msgs = defaultdict(dict)
 
-    def format(self, error: Violation) -> str:
+    def format(self, error):
+        # type: (Violation) -> str
         plugin = getattr(error, 'plugin', '')
         self._codes[plugin][error.code] += 1
         self._msgs[plugin][error.code] = error.text

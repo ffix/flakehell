@@ -16,7 +16,8 @@ ALIASES = {
 }
 
 
-def get_installed(app) -> Iterator[Dict[str, Any]]:
+def get_installed(app):
+    # type: (...) -> Iterator[Dict[str, Any]]
     plugins_codes = defaultdict(list)
     versions = dict()
 

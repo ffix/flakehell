@@ -158,7 +158,9 @@ def extract_pylint():
     from pylint.lint import MSGS
 
     codes = dict()
-    for code, (msg, alias, *_) in MSGS.items():
+    for code, value in MSGS.items():
+        # FIXME: naming
+        msg, alias = value[:2]
         if msg in ('%s', '%s: %s'):
             msg = alias.replace('-', ' ')
         codes[code] = msg.replace('\n', ' ')
@@ -170,7 +172,9 @@ def extract_pylint():
             msgs = getattr(cls, 'msgs', None)
             if not msgs:
                 continue
-            for code, (msg, alias, *_) in msgs.items():
+            for code, value in MSGS.items():
+                # FIXME: naming
+                msg, alias = value[:2]
                 if msg in ('%s', '%s: %s'):
                     msg = alias.replace('-', ' ')
                 codes[code] = msg.replace('\n', ' ')

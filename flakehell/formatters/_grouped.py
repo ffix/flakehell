@@ -16,20 +16,22 @@ class GroupedFormatter(ColoredFormatter):
     """
 
     def after_init(self):
-        super().after_init()
-        self._proccessed_filenames: List[str] = []
+        super(GroupedFormatter, self).after_init()
+        self._proccessed_filenames = []  # type: List[str]
         self._error_count = 0
 
-    def handle(self, error: Violation) -> None:  # noqa: WPS110
+    def handle(self, error):  # noqa: WPS110
+        # type: (Violation) -> None
         """Processes each :term:`violation` to print it and all related."""
         if error.filename not in self._proccessed_filenames:
             self._print_header(error.filename)
             self._proccessed_filenames.append(error.filename)
 
-        super().handle(error)
+        super(GroupedFormatter, self).handle(error)
         self._error_count += 1
 
-    def format(self, error: Violation) -> str:
+    def format(self, error):
+        # type: (Violation) -> str
         """Called to format each individual :term:`violation`."""
         line = '  {row_col:<8} {code} {text}'.format(
             code=color_code(error.code),
@@ -44,7 +46,8 @@ class GroupedFormatter(ColoredFormatter):
             line += colored(' [{}]'.format(plugin), 'grey')
         return line
 
-    def show_statistics(self, statistics: Statistics) -> None:  # noqa: WPS210
+    def show_statistics(self, statistics):  # noqa: WPS210
+        # type: (Statistics) -> None
         """Called when ``--statistic`` option is passed."""
         all_errors = 0
         for error_code in statistics.error_codes():
@@ -81,7 +84,8 @@ class GroupedFormatter(ColoredFormatter):
 
     # Our own methods:
 
-    def _print_header(self, filename: str) -> None:
+    def _print_header(self, filename):
+        # type: (str) -> None
         if filename.startswith('./'):
             filename = filename[2:]
         self._write(
@@ -95,10 +99,11 @@ class GroupedFormatter(ColoredFormatter):
 # Helpers:
 
 def _count_per_filename(
-    statistics: Statistics,
-    error_code: str,
-) -> DefaultDict[str, int]:
-    filenames: DefaultDict[str, int] = defaultdict(int)
+    statistics,  # type: Statistics
+    error_code,  # type: str
+):
+    # type(...) -> DefaultDict[str, int]
+    filenames = defaultdict(int)  # type: DefaultDict[str, int]
     stats_for_error_code = statistics.statistics_for(error_code)
 
     for stat in stats_for_error_code:

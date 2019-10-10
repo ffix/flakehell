@@ -7,13 +7,15 @@ class MultiDict:
     def __init__(self):
         self._data = defaultdict(list)
 
-    def get(self, name: str, default=None):
+    def get(self, name, default=None):
+        # type: (str, ...)
         items = self._data[name]
         if items:
             return items[0]
         return default
 
-    def getlist(self, name: str, default=None) -> list:
+    def getlist(self, name, default=None):
+        # type: (str, ...) -> list
         items = self._data[name]
         if items:
             return items
