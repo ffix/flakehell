@@ -31,10 +31,6 @@ matrix:
       env: ENV=pytest
     - python: "3.4"
       env: ENV=pytest
-    - python: "3.2"
-      env: ENV=pytest
-    - python: "3.2"
-      env: ENV=pytest
     - python: "2.7"
       env: ENV=pytest
 

@@ -1,3 +1,4 @@
+import sys
 from enum import IntEnum
 
 
@@ -34,11 +35,7 @@ class ExitCodes(IntEnum):
 
 KNOWN_PLUGINS = [
     'dlint',
-    'flake8-alfred',
-    'flake8-annotations-complexity',
     'flake8-bandit',
-    'flake8-broken-line',
-    'flake8-bugbear',
     'flake8-builtins',
     'flake8-coding',
     'flake8-commas',
@@ -46,20 +43,16 @@ KNOWN_PLUGINS = [
     'flake8-debugger',
     'flake8-django',
     'flake8-docstrings',  # pydocstyle
-    'flake8-eradicate',
-    'flake8-executable',
     'flake8-isort',
     'flake8-logging-format',
     'flake8-mutable',
     'flake8-pep3101',
-    'flake8-pie',
     'flake8-print',
     'flake8-quotes',
     'flake8-rst-docstrings',
     'flake8-scrapy',
     'flake8-strict',
     'flake8-string-format',
-    'flake8-variables-names',
     'mccabe',
     'pep8-naming',
 
@@ -67,3 +60,15 @@ KNOWN_PLUGINS = [
     'pycodestyle',
     'pyflakes',
 ]
+
+if sys.version_info > (3, 4, 0):
+    KNOWN_PLUGINS = KNOWN_PLUGINS + [
+        'flake8-alfred',
+        'flake8-annotations-complexity',
+        'flake8-broken-line',
+        'flake8-bugbear',
+        'flake8-eradicate',
+        'flake8-executable',
+        'flake8-pie',
+        'flake8-variables-names',
+    ]
