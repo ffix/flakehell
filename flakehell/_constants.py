@@ -61,9 +61,8 @@ KNOWN_PLUGINS = [
     'pyflakes',
 ]
 
-if sys.version_info > (3, 4, 0):
-    KNOWN_PLUGINS = KNOWN_PLUGINS + [
-        'flake8-alfred',
+if sys.version_info >= (3, 4, 0):
+    KNOWN_PLUGINS += [
         'flake8-annotations-complexity',
         'flake8-broken-line',
         'flake8-bugbear',
@@ -71,4 +70,9 @@ if sys.version_info > (3, 4, 0):
         'flake8-executable',
         'flake8-pie',
         'flake8-variables-names',
+    ]
+
+if sys.version_info >= (3, 6, 0):
+    KNOWN_PLUGINS += [
+        'flake8-alfred',
     ]

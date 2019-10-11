@@ -88,7 +88,7 @@ docs = [
 ]
 dev = [
     "dlint",
-    "flake8-alfred; python_version>='3.4'",
+    "flake8-alfred; python_version>='3.6'",
     "flake8-annotations-complexity; python_version>='3.4'",
     "flake8-bandit",
     "flake8-broken-line; python_version>='3.4'",
