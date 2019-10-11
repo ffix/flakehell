@@ -36,7 +36,7 @@ module="flakehell"
 author="Gram (@orsinium)"
 author-email="master_fess@mail.ru"
 home-page="https://gitlab.com/life4/flakehell"
-requires-python=">=2.7"
+requires-python=">>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 requires=[
     "entrypoints",
     "flake8>=3.7.5",
@@ -117,7 +117,7 @@ dev = [
     "mccabe",
     "pep8-naming",
     "pylint",
-    "wemake-python-styleguide",
+    "wemake-python-styleguide; python_version>='3.6'",
 
     "pytest",
 ]
