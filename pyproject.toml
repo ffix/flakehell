@@ -32,7 +32,7 @@ classifiers = [
     "Topic :: Software Development :: Quality Assurance",
 ]
 homepage = "https://gitlab.com/life4/flakehell"
-authors = ["Gram (@orsinium) <master_fess@mail.ru>"]
+authors = ["Gram <master_fess@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.scripts]

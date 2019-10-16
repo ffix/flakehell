@@ -28,6 +28,8 @@ matrix:
       script:
         - poetry run pytest tests/
     - python: "3.4"
+      install:
+        - pip install 'poetry<0.12.17'
       script:
         - poetry run pytest tests/
     - python: "2.7.15"
