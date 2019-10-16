@@ -1,6 +1,9 @@
 import sys
 from argparse import ArgumentParser
-from pathlib import Path
+try:
+    from pathlib2 import Path
+except ImportError:
+    from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple
 
 from flake8.main.application import Application

@@ -1,7 +1,11 @@
 import ast
+import inspect
 import re
 from importlib import import_module
-from pathlib import Path
+try:
+    from pathlib2 import Path
+except ImportError:
+    from pathlib import Path
 
 
 REX_CODE = re.compile(r'^[A-Z]{1,5}[0-9]{1,5}$')
@@ -39,7 +43,7 @@ def get_messages(code, content):
 
 def extract_default(name):
     module = import_module(name)
-    content = Path(module.__file__).read_text()
+    content = inspect.getsource(module)
     return get_messages(code='', content=content)
 
 
@@ -68,21 +72,21 @@ def extract_flake8_commas():
 def extract_flake8_quotes():
     import flake8_quotes
 
-    content = Path(flake8_quotes.__file__).read_text()
+    content = inspect.getsource(flake8_quotes)
     return get_messages(code='Q0', content=content)
 
 
 def extract_flake8_variables_names():
     from flake8_variables_names import checker
 
-    content = Path(checker.__file__).read_text()
+    content = inspect.getsource(checker)
     return get_messages(code='VNE', content=content)
 
 
 def extract_logging_format():
     from logging_format import violations
 
-    content = Path(violations.__file__).read_text()
+    content = inspect.getsource(violations)
     return get_messages(code='G', content=content)
 
 
@@ -122,7 +126,7 @@ def extract_flake8_eradicate():
 def extract_flake8_annotations_complexity():
     from flake8_annotations_complexity.checker import AnnotationsComplexityChecker
 
-    code, message = AnnotationsComplexityChecker._error_message_template.split(' ', maxsplit=1)
+    code, message = AnnotationsComplexityChecker._error_message_template.split(' ', 1)
     return {code: message}
 
 
@@ -236,7 +240,7 @@ def extract_flake8_pie():
         if not name.startswith('PIE'):
             continue
         obj = getattr(flake8_pie, name)('', '')
-        code, msg = obj.message.split(': ', maxsplit=1)
+        code, msg = obj.message.split(': ', 1)
         codes[code] = msg
     return codes
 
@@ -280,7 +284,7 @@ def extract_dlint():
 
     codes = dict()
     for linter in ALL:
-        code, msg = linter._error_tmpl.split(' ', maxsplit=1)
+        code, msg = linter._error_tmpl.split(' ', 1)
         codes[code] = msg
     return codes
 
@@ -288,7 +292,7 @@ def extract_dlint():
 def extract_mccabe():
     from mccabe import McCabeChecker
 
-    code, message = McCabeChecker._error_tmpl.split(' ', maxsplit=1)
+    code, message = McCabeChecker._error_tmpl.split(' ', 1)
     return {code: message}
 
 

@@ -50,7 +50,6 @@ KNOWN_PLUGINS = [
     'flake8-print',
     'flake8-quotes',
     'flake8-rst-docstrings',
-    'flake8-scrapy',
     'flake8-strict',
     'flake8-string-format',
     'mccabe',
@@ -70,5 +69,6 @@ if sys.version_info >= (3, 6, 0):
         'flake8-eradicate',
         'flake8-executable',
         'flake8-pie',
+        'flake8-scrapy',
         'flake8-variables-names',
     ]

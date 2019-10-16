@@ -1,4 +1,7 @@
-from pathlib import Path
+try:
+    from pathlib2 import Path
+except ImportError:
+    from pathlib import Path
 from typing import Any, Dict
 
 import urllib3
