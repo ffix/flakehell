@@ -11,33 +11,32 @@ before_install:
   - env
   - tree
   - ls /opt/python
-  # install DepHell
-  # https://github.com/travis-ci/travis-ci/issues/8589
-  - curl -L dephell.org/install | /opt/python/3.7/bin/python
-  - dephell inspect self
+  - "/opt/python/$TRAVIS_PYTHON_VERSION/bin/python" install poetry
 install:
-  - dephell venv create --env=$ENV --python="/opt/python/$TRAVIS_PYTHON_VERSION/bin/python"
-  - dephell deps install --env=$ENV
-script:
-  - dephell venv run --env=$ENV
+  - poetry install
 
 matrix:
   include:
 
     - python: "3.7"
-      env: ENV=pytest
+      script:
+        - poetry run pytest tests/
     - python: "3.6.7"
-      env: ENV=pytest
+      script:
+        - poetry run pytest tests/
     - python: "3.5"
-      env: ENV=pytest
+      script:
+        - poetry run pytest tests/
     - python: "3.4"
-      env: ENV=pytest
+      script:
+        - poetry run pytest tests/
     - python: "2.7.15"
-      env: ENV=pytest
-
+      script:
+        - poetry run pytest tests/
     - name: lint
       python: "3.7"
-      env: ENV=main
+      script:
+        - poetry run flakehell lint
 
     # https://github.com/igorshubovych/markdownlint-cli
     - name: markdown lint
@@ -48,4 +47,9 @@ matrix:
         - bash -c "markdownlint --config markdownlint.json **/*.md"
 
     - python: "3.7"
-      env: ENV=docs
+      script:
+        - sphinx-build -W docs docs/build
+      install:
+        - poetry install -E docs
+      script:
+        - poetry run pytest tests/
