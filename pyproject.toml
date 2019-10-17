@@ -11,7 +11,7 @@ flake8-quotes = ["+*"]
 pylint = ["+F*", "+E*", "-E0611", "-E1101", "-E0401"]
 
 [tool.poetry]
-name = "flakehell"
+name = "flakehell-py27"
 version = "0.3.0"
 description = "Flake8 wrapper to make it nice and configurable"
 classifiers = [
