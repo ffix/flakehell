@@ -17,7 +17,7 @@ class FlakeHellCheckersManager(Manager):
         super(FlakeHellCheckersManager, self).__init__(**kwargs)
 
     def make_checkers(self, paths=None):
-        # type: (List[str]) -> None:
+        # type: (List[str]) -> None
         """
         Reloaded checkers generator to provide one checker per file per rule.
         Original `make_checkers` provides checker per file with all rules mixed.
@@ -66,8 +66,10 @@ class FlakeHellCheckersManager(Manager):
         #     return None
         return checker
 
-    def _should_create_file_checker(self, filename, argument):
-        # type: (str, Any) -> bool
+    def _should_create_file_checker(self,
+            filename,  # type: str
+            argument,
+    ):
         """Filter out excluded files
         """
         if filename == '-':
@@ -141,8 +143,13 @@ class FlakeHellFileChecker(FileChecker):
     """
     A little bit patched FileChecker to handle ane check per checker
     """
-    def __init__(self, filename, check_type, check, options):
-        # type: (str, str, Any, Any)
+    def __init__(
+            self,
+            filename,  # type: str
+            check_type,  # type: str
+            check,
+            options,
+        ):
         self.check_type = check_type
         self.check = check
         checks = dict(ast_plugins=[], logical_line_plugins=[], physical_line_plugins=[])

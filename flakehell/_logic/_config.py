@@ -9,7 +9,7 @@ import toml
 
 
 def read_config(*paths):
-    # type (...) -> Dict[str, Any]
+    # type: (...) -> Dict[str, Any]
     config = dict()
     for path in paths:
         if isinstance(path, Path):

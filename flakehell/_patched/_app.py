@@ -26,7 +26,7 @@ class FlakeHellApplication(Application):
     """
 
     def get_toml_config(self, path=None):
-        # type: (Path) -> Dict[str, Any]:
+        # type: (Path) -> Dict[str, Any]
         if path is not None:
             return read_config(path)
         # lookup for config from current dir up to root

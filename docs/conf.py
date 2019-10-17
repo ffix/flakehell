@@ -3,7 +3,10 @@
 import os
 import sys
 from datetime import date
-from pathlib import Path
+try:
+    from pathlib2 import Path
+except ImportError:
+    from pathlib import Path
 
 # external
 import alabaster

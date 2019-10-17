@@ -1,4 +1,3 @@
-from .._types import MappingProxyType
 from ._baseline import baseline_command
 from ._code import code_command
 from ._codes import codes_command
@@ -17,8 +16,6 @@ __all__ = [
     'plugins_command',
 ]
 
-# FIXME:
-# COMMANDS = MappingProxyType(dict(
 COMMANDS = dict(
     baseline=baseline_command,
     code=code_command,

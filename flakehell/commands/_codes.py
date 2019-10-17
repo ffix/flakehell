@@ -11,7 +11,7 @@ REX_QUOTES = re.compile(r'([\"\'\`][\w\s\:\_\-\.]+[\"\'\`])')
 
 
 def codes_command(argv):
-    # type(...) -> CommandResult
+    # type: (...) -> CommandResult
     """Show available codes and messages for given plugin.
     """
     if not argv:
