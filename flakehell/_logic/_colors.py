@@ -62,7 +62,8 @@ def colorize_quotes(m):
 
 def color_description(text):
     # type: (str) -> str
-    text = REX_NUMBER.sub(colored(lambda m: m.group(1), 'green'), text)
+
+    text = REX_NUMBER.sub(colored(r'\1', 'green'), text)
     text = REX_QUOTES.sub(colorize_quotes, text)
-    text = REX_PLACEHOLDER.sub(colored(lambda m: m.group(1), 'green'), text)
+    text = REX_PLACEHOLDER.sub(colored(r'\1', 'green'), text)
     return text
