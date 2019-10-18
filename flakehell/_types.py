@@ -1,9 +1,12 @@
+from __future__ import absolute_import, unicode_literals
+
+from builtins import object
 from typing import Tuple
 
 try:
     from typing import SimpleNamespace
 except ImportError:
-    class SimpleNamespace:
+    class SimpleNamespace(object):
         def __init__(self, **kwargs):
             self.__dict__.update(kwargs)
 

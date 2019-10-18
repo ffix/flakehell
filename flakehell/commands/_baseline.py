@@ -1,8 +1,9 @@
+from __future__ import absolute_import, unicode_literals
+
 from .._constants import NAME, VERSION
 from .._patched import FlakeHellApplication
-from .._types import CommandResult
+from .._types import CommandResult, SimpleNamespace
 from ..formatters import BaseLineFormatter
-from .._types import SimpleNamespace
 
 
 def baseline_command(argv):

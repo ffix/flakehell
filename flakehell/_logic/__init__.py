@@ -1,3 +1,5 @@
+from __future__ import absolute_import, unicode_literals
+
 from ._config import read_config
 from ._colors import color_code, color_description
 from ._discover import get_installed

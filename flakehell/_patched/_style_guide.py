@@ -1,11 +1,15 @@
+from __future__ import absolute_import, unicode_literals
+
+from builtins import dict, super
+
+from flake8.style_guide import Decision, StyleGuide, StyleGuideManager
+
+from ._violation import FlakeHellViolation
+
 try:
     from functools import lru_cache
 except ImportError:
     from functools32 import lru_cache
-
-from flake8.style_guide import StyleGuideManager, StyleGuide, Decision
-
-from ._violation import FlakeHellViolation
 
 
 class FlakeHellStyleGuideManager(StyleGuideManager):
@@ -14,7 +18,7 @@ class FlakeHellStyleGuideManager(StyleGuideManager):
 
         .. todo:: Add parameter documentation.
         """
-        super(FlakeHellStyleGuideManager, self).__init__(options, formatter, decider)
+        super().__init__(options, formatter, decider)
         self.default_style_guide = FlakeHellStyleGuide(
             options, formatter, self.stats, decider=decider,
         )

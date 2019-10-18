@@ -1,7 +1,11 @@
+from __future__ import absolute_import, unicode_literals
+
 import ast
 import inspect
 import re
+from builtins import bytes, dict, str
 from importlib import import_module
+
 try:
     from pathlib2 import Path
 except ImportError:
@@ -30,6 +34,8 @@ def get_messages(code, content):
 
     messages = dict()
     for message in collector._strings:
+        if isinstance(message, bytes):
+            message = message.decode('utf-8')
         message_code, _, message_text = message.partition(' ')
         if not message_text:
             continue

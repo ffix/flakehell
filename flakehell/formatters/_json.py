@@ -1,4 +1,8 @@
+from __future__ import absolute_import, unicode_literals
+
 import json
+from builtins import dict
+
 from flake8.formatting.base import BaseFormatter
 
 

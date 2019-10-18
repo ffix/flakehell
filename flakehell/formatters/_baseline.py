@@ -1,4 +1,7 @@
+from __future__ import absolute_import, unicode_literals
+
 from flake8.formatting.base import BaseFormatter
+
 from .._logic import make_baseline
 
 

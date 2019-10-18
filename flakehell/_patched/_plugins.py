@@ -1,9 +1,12 @@
+from __future__ import absolute_import, unicode_literals
+
+from builtins import object
 from collections import defaultdict
 
 from flake8.plugins.manager import Checkers, PluginManager
 
 
-class MultiDict:
+class MultiDict(object):
     def __init__(self):
         self._data = defaultdict(list)
 

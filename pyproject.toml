@@ -60,6 +60,7 @@ termcolor = "*"
 toml = "*"
 urllib3 = "*"
 pathlib2 = {python = "<3.6", version="*"}
+future = "^0.18.1"
 
 [tool.poetry.dev-dependencies]
 dlint = "*"

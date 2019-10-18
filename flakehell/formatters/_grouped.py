@@ -1,12 +1,16 @@
+from __future__ import absolute_import, unicode_literals
+
+from builtins import next, str, super
 from collections import defaultdict
 from typing import DefaultDict, List
 
 from flake8.statistics import Statistics
 from flake8.style_guide import Violation
+
 from termcolor import colored
 
-from ._colored import ColoredFormatter
 from .._logic import color_code, color_description
+from ._colored import ColoredFormatter
 
 
 class GroupedFormatter(ColoredFormatter):
@@ -16,7 +20,7 @@ class GroupedFormatter(ColoredFormatter):
     """
 
     def after_init(self):
-        super(GroupedFormatter, self).after_init()
+        super().after_init()
         self._proccessed_filenames = []  # type: List[str]
         self._error_count = 0
 
@@ -27,7 +31,7 @@ class GroupedFormatter(ColoredFormatter):
             self._print_header(error.filename)
             self._proccessed_filenames.append(error.filename)
 
-        super(GroupedFormatter, self).handle(error)
+        super().handle(error)
         self._error_count += 1
 
     def format(self, error):

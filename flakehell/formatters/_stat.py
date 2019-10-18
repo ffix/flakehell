@@ -1,10 +1,14 @@
+from __future__ import absolute_import, unicode_literals
+
+from builtins import super
 from collections import defaultdict
 
 from flake8.style_guide import Violation
+
 from termcolor import colored
 
-from ._colored import ColoredFormatter
 from .._logic import color_code, color_description
+from ._colored import ColoredFormatter
 
 
 class StatFormatter(ColoredFormatter):
@@ -13,7 +17,7 @@ class StatFormatter(ColoredFormatter):
     """
 
     def after_init(self):
-        super(StatFormatter, self).after_init()
+        super().after_init()
         self._codes = defaultdict(lambda: defaultdict(int))
         self._msgs = defaultdict(dict)
 

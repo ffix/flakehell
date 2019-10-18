@@ -1,8 +1,9 @@
+from __future__ import absolute_import, unicode_literals
+
 import re
-from typing import Dict, Any, List
+from typing import Any, Dict, List
 
 from flake8.utils import fnmatch
-
 
 REX_NAME = re.compile(r'[-_.]+')
 ALIASES = {

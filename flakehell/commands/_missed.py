@@ -1,3 +1,5 @@
+from __future__ import absolute_import, print_function, unicode_literals
+
 from .._constants import NAME, VERSION, ExitCodes
 from .._logic import get_installed, get_plugin_rules
 from .._patched import FlakeHellApplication

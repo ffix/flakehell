@@ -1,3 +1,7 @@
+from __future__ import absolute_import, unicode_literals
+
+from builtins import dict
+
 from ._baseline import baseline_command
 from ._code import code_command
 from ._codes import codes_command

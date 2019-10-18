@@ -1,5 +1,7 @@
+from __future__ import absolute_import, unicode_literals
+
 from ast import AST
-# FIXME:
+from builtins import dict, object, super
 from typing import Sequence
 
 from pylint.__pkginfo__ import version
@@ -12,7 +14,7 @@ STDIN = 'stdin'
 class Reporter(BaseReporter):
     def __init__(self):
         self.errors = []
-        super(Reporter, self).__init__()
+        super().__init__()
 
     def _display(self, layout):
         pass
@@ -26,7 +28,7 @@ class Reporter(BaseReporter):
         ))
 
 
-class PyLintChecker:
+class PyLintChecker(object):
     name = 'pylint'
     version = version
 

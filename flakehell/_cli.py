@@ -1,11 +1,14 @@
+from __future__ import absolute_import, print_function, unicode_literals
+
 import sys
+from builtins import str
 from typing import List, NoReturn
 
 from termcolor import colored
 
 from ._constants import ExitCodes
-from .commands import COMMANDS
 from ._types import CommandResult
+from .commands import COMMANDS
 
 
 def show_commands():

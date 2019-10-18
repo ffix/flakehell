@@ -1,20 +1,26 @@
+from __future__ import absolute_import, unicode_literals
+
 import sys
 from argparse import ArgumentParser
-try:
-    from pathlib2 import Path
-except ImportError:
-    from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
+from builtins import dict, super
+from typing import Any, Dict, List, Optional, Tuple
 
 from flake8.main.application import Application
 from flake8.options.aggregator import aggregate_options
 from flake8.options.config import get_local_plugins
 
-from ._checkers import FlakeHellCheckersManager
-from ._style_guide import FlakeHellStyleGuideManager
 from .._constants import DEFAULTS
 from .._logic import read_config
+from ._checkers import FlakeHellCheckersManager
 from ._plugins import FlakeHellCheckers
+from ._style_guide import FlakeHellStyleGuideManager
+
+try:
+    from pathlib2 import Path
+except ImportError:
+    from pathlib import Path
+
+
 
 
 class FlakeHellApplication(Application):
@@ -70,7 +76,7 @@ class FlakeHellApplication(Application):
             arglist=argv,
             values=config,
         )
-        super(FlakeHellApplication, self).parse_configuration_and_cli(argv=argv)
+        super().parse_configuration_and_cli(argv=argv)
 
     def make_file_checker_manager(self):
         # type: () -> None
@@ -94,7 +100,7 @@ class FlakeHellApplication(Application):
 
         if self.check_plugins is None:
             self.check_plugins = FlakeHellCheckers(self.local_plugins.extension)
-        super(FlakeHellApplication, self).find_plugins()
+        super().find_plugins()
 
     def make_guide(self):
         # type: () -> None

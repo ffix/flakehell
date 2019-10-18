@@ -6,3 +6,4 @@ setup.py
 pip-wheel-metadata/
 docs/build/
 venv*
+*.pyc

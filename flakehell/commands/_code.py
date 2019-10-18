@@ -1,7 +1,11 @@
+from __future__ import absolute_import, print_function, unicode_literals
+
+from builtins import dict
+
 from termcolor import colored
 
 from .._constants import NAME, VERSION, ExitCodes
-from .._logic import get_installed, color_description, extract
+from .._logic import color_description, extract, get_installed
 from .._patched import FlakeHellApplication
 from .._types import CommandResult
 

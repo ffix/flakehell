@@ -1,3 +1,5 @@
+from __future__ import absolute_import, print_function, unicode_literals
+
 from termcolor import colored
 
 from .._constants import NAME, VERSION, ExitCodes

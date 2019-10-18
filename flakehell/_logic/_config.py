@@ -1,11 +1,16 @@
+from __future__ import absolute_import, unicode_literals
+
+from builtins import dict
+from typing import Any, Dict
+
+import toml
+import urllib3
+
 try:
     from pathlib2 import Path
 except ImportError:
     from pathlib import Path
-from typing import Any, Dict
 
-import urllib3
-import toml
 
 
 def read_config(*paths):

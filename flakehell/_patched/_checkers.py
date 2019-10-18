@@ -1,9 +1,17 @@
+from __future__ import absolute_import, unicode_literals
+
+from builtins import dict, open, super
 from typing import List, Tuple
 
-from flake8.checker import Manager, FileChecker
-from flake8.utils import fnmatch, filenames_from
+from flake8.checker import FileChecker, Manager
+from flake8.utils import filenames_from, fnmatch
 
-from .._logic import get_plugin_name, get_plugin_rules, check_include, make_baseline
+from .._logic import (
+    check_include,
+    get_plugin_name,
+    get_plugin_rules,
+    make_baseline,
+)
 
 
 class FlakeHellCheckersManager(Manager):
@@ -14,7 +22,7 @@ class FlakeHellCheckersManager(Manager):
         self.baseline = set()
         if baseline:
             self.baseline = {line.strip() for line in open(baseline)}
-        super(FlakeHellCheckersManager, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
     def make_checkers(self, paths=None):
         # type: (List[str]) -> None
@@ -154,7 +162,7 @@ class FlakeHellFileChecker(FileChecker):
         self.check = check
         checks = dict(ast_plugins=[], logical_line_plugins=[], physical_line_plugins=[])
         checks[check_type] = [check]
-        super(FlakeHellFileChecker, self).__init__(filename=filename, checks=checks, options=options)
+        super().__init__(filename=filename, checks=checks, options=options)
 
         # display_name used in run_parallel for grouping results.
         # Flake8 groups by filename, we need to group also by plugin name
@@ -169,5 +177,5 @@ class FlakeHellFileChecker(FileChecker):
 
     def run_checks(self):
         if self.processor:
-            super(FlakeHellFileChecker, self).run_checks()
+            super().run_checks()
         return self.display_name, self.results, self.statistics

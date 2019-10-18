@@ -1,4 +1,7 @@
+from __future__ import absolute_import, unicode_literals
+
 import re
+from builtins import dict
 from collections import defaultdict
 from typing import Any, Dict, Iterator
 
