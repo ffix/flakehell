@@ -7,6 +7,7 @@ from ._colored import ColoredFormatter
 from ._grouped import GroupedFormatter
 from ._json import JSONFormatter
 from ._stat import StatFormatter
+from ._teamcity import TeamCityFormatter
 
 FORMATTERS = dict(
     baseline=BaseLineFormatter,
@@ -14,4 +15,5 @@ FORMATTERS = dict(
     grouped=GroupedFormatter,
     json=JSONFormatter,
     stat=StatFormatter,
+    teamcity=TeamCityFormatter,
 )

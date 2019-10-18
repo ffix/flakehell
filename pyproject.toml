@@ -49,6 +49,7 @@ colored = "flakehell.formatters:ColoredFormatter"
 grouped = "flakehell.formatters:GroupedFormatter"
 json = "flakehell.formatters:JSONFormatter"
 stat = "flakehell.formatters:StatFormatter"
+teamcity = "flakehell.formatters:TeamCityFormatter"
 
 [tool.poetry.dependencies]
 python = "~2.7 || ^3.4"
