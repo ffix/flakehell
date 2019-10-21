@@ -19,6 +19,8 @@ class TeamCityFormatter(BaseFormatter):
     Show count of every code occurance
     """
 
+    level = 'ERROR'
+
     def after_init(self):
         super().after_init()
         self._write("##teamcity[compilationStarted compiler='flake8']")
@@ -31,9 +33,14 @@ class TeamCityFormatter(BaseFormatter):
             error.code,
             error.text,
         )
-        return "##teamcity[message text='{0}' status='ERROR']".format(
+        return "##teamcity[message text='{0}' status='{1}']".format(
             escape_value(message),
+            self.level,
         )
 
     def stop(self):
         self._write("##teamcity[compilationFinished compiler='flake8']")
+
+
+class TeamCityFormatterWarning(TeamCityFormatter):
+    level = 'WARNING'

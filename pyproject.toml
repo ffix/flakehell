@@ -50,6 +50,7 @@ grouped = "flakehell.formatters:GroupedFormatter"
 json = "flakehell.formatters:JSONFormatter"
 stat = "flakehell.formatters:StatFormatter"
 teamcity = "flakehell.formatters:TeamCityFormatter"
+teamcity_warning = "flakehell.formatters:TeamCityFormatterWarning"
 
 [tool.poetry.dependencies]
 python = "~2.7 || ^3.4"
